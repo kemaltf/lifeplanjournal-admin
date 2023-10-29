@@ -1,7 +1,7 @@
-export default function Home() {
+export default function SetupPage() {
   return (
-    <>
-      <p>Hello Admin Dashboard!</p>
-    </>
+    <div className="p-4">
+      <p>This page is should be protected!</p>
+    </div>
   );
 }
