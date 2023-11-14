@@ -1,6 +1,7 @@
 import { ModalProvider } from '@/providers/modal-provider';
 import './globals.css';
 import { Inter } from 'next/font/google';
+import getCurrentUser from './api/actions/getCurrentUser';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -9,7 +10,9 @@ export const metadata = {
   description: 'Life Plan Journal Admin Dashboard',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const currentUser = await getCurrentUser();
+  console.log('-', currentUser);
   return (
     <html lang="en">
       <body className={inter.className}>
