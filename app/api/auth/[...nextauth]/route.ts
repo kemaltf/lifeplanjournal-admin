@@ -3,7 +3,8 @@ import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcrypt';
 
-const authOptions: NextAuthOptions = {
+// authOptions should be exported since we will use getServerSession that require this value in the argument
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
@@ -23,7 +24,7 @@ const authOptions: NextAuthOptions = {
         }
         // "Why do we use 'findFirst' instead of 'findUnique' because Prisma's 'findUnique' requires a unique 'where' argument. In your Prisma model schema, you use UUID as the ID, so when you try to find a user based on the username, Prisma expects you to also provide the ID.
         const user = await prisma.user
-          .findFirst({
+          .findUnique({
             where: {
               username: credentials.username,
             },
@@ -41,11 +42,30 @@ const authOptions: NextAuthOptions = {
         if (!isCorrectPassword) {
           throw new Error('Invalid credentials');
         }
-
         return user;
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user, session }) {
+      if (user) {
+        return {
+          ...token,
+          id: user.id,
+          username: user.username,
+          firstname: user.first_name,
+        };
+      }
+      return token;
+    },
+    async session({ session, token, user }) {
+      if (session) {
+        session.user.username = token.username;
+        session.user.firstname = token.firstname;
+      }
+      return session;
+    },
+  },
   debug: process.env.NODE_ENV === 'development',
   secret: process.env.NEXTAUTH_SECRET,
   session: {

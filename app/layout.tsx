@@ -11,8 +11,9 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // get the current user
+  // this is usefull when we want to see current user inside the navbar
   const currentUser = await getCurrentUser();
-  console.log('-', currentUser);
   return (
     <html lang="en">
       <body className={inter.className}>

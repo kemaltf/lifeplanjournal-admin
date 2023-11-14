@@ -9,21 +9,25 @@ export async function getSession() {
 
 export default async function getCurrentUser() {
   try {
+    // take the session value
     const session = await getSession();
-    if (!session?.user?.email) {
+    if (!session?.user?.username) {
       return null;
     }
 
+    // check if the user is exist in the database
     const currentUser = await prismadb?.user.findUnique({
       where: {
-        username: session.user.username as string,
+        username: session.user?.username,
       },
     });
 
+    // if the user not exist
     if (!currentUser) {
       return null;
     }
 
+    // if exist we return the user data
     return currentUser;
   } catch (err: any) {
     return null;
