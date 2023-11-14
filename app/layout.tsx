@@ -2,6 +2,7 @@ import { ModalProvider } from '@/providers/modal-provider';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import getCurrentUser from './api/actions/getCurrentUser';
+import { ToasterProvider } from '@/providers/toast-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,6 +18,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <body className={inter.className}>
+        <ToasterProvider />
         <ModalProvider />
         {children}
       </body>
