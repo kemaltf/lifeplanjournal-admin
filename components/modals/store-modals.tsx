@@ -9,6 +9,7 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 // use state management (using zustand)
 import { useState } from 'react';
+// toast is for trigger the toaster
 import { toast } from 'react-hot-toast';
 
 import { useStoreModal } from '@/hooks/use-store-modals';
