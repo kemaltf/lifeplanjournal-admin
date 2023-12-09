@@ -1,9 +1,22 @@
+/**
+ * In server-side scenarios like Route Handlers,
+ * React Server Components, API routes, or getServerSideProps,
+ * prefer getServerSession over getSession for session retrieval.
+ * This function is beneficial, especially when NextAuth.js
+ * is integrated with a database, significantly improving
+ * response times by avoiding unnecessary API Route calls.
+ */
 import { getServerSession } from 'next-auth';
 
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import prismadb from '@/lib/prismadb';
 
+/**
+ * getSession fucntion is a helper, so we don't need to pass the
+ * authOptions around when we call getServerSession.
+ */
 export async function getSession() {
+  // we have to pass the authOptions to getServerSession
   return await getServerSession(authOptions);
 }
 

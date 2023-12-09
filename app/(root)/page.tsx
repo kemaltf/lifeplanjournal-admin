@@ -1,6 +1,11 @@
 'use client';
 
+/**
+ * because we want to use use state and lifecycle event so we use use client
+ */
+
 import { useEffect } from 'react';
+
 import { useStoreModal } from '@/hooks/use-store-modals';
 
 export default function SetupPage() {

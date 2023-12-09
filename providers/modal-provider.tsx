@@ -1,10 +1,10 @@
 'use client';
+// separate global import and local import by adding 1 empty line
+import { useEffect, useState } from 'react';
 
 import { StoreModal } from '@/components/modals/store-modals';
 // since we want this modal appear on all of pages, so we need to create "provider"
 // to show in layout
-
-import { useEffect, useState } from 'react';
 
 export const ModalProvider = () => {
   // since we want to put this provider inside layout.tsx which is server component.
