@@ -20,9 +20,5 @@ export default function SetupPage() {
     }
   }, [isOpen, onOpen]);
 
-  return (
-    <div className="p-4">
-      <p>This page is should be protected!</p>
-    </div>
-  );
+  return null;
 }
