@@ -8,7 +8,7 @@
  */
 import { getServerSession } from 'next-auth';
 
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authConfig } from '../api/auth/[…nextauth]/auth.config';
 import prismadb from '@/lib/prismadb';
 
 /**
@@ -17,7 +17,7 @@ import prismadb from '@/lib/prismadb';
  */
 export async function getSession() {
   // we have to pass the authOptions to getServerSession
-  return await getServerSession(authOptions);
+  return await getServerSession(authConfig);
 }
 
 export default async function getCurrentUser() {
