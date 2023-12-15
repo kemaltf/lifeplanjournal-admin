@@ -8,7 +8,7 @@
  */
 import { getServerSession } from 'next-auth';
 
-import { authConfig } from '../api/auth/[…nextauth]/auth.config';
+import { authConfig } from '../api/auth/[...nextauth]/auth.config';
 import prismadb from '@/lib/prismadb';
 
 /**

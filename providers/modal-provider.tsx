@@ -2,7 +2,7 @@
 // separate global import and local import by adding 1 empty line
 import { useEffect, useState } from 'react';
 
-import { StoreModal } from '@/components/modals/store-modals';
+import { StoreModal } from '@/components/ui/organism/modals/store-modals';
 // since we want this modal appear on all of pages, so we need to create "provider"
 // to show in layout
 
