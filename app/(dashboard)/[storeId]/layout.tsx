@@ -1,4 +1,5 @@
 import getCurrentUser from '@/app/actions/getCurrentUser';
+import Navbar from '@/components/ui/organism/navbar/navbar';
 import prismadb from '@/lib/prismadb';
 import { redirect } from 'next/navigation';
 
@@ -25,7 +26,7 @@ export default async function DashboardLayout({ children, params }: { children: 
   // if exist
   return (
     <>
-      <div>This will be a navbar</div>
+      <Navbar />
       {children}
     </>
   );
