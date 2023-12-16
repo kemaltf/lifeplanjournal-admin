@@ -20,5 +20,6 @@ export default function SetupPage() {
     }
   }, [isOpen, onOpen]);
 
+  // this page just trigger modal
   return null;
 }

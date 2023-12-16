@@ -63,6 +63,9 @@ the value of that state.
       // throw new Error('x');
       const response = await axios.post('/api/stores', values);
       toast.success('Store created.');
+
+      // complete refresh our page
+      window.location.assign(`/${response.data.id}`);
     } catch (error) {
       toast.error('Something went wrong.');
     } finally {

@@ -12,14 +12,17 @@ export default async function DashboardLayout({ children, params }: { children: 
     redirect('/sign-in');
   }
 
+  // confirm again
   const store = await prismadb.store.findFirst({
     where: { id: params.storeId, user_id: currentUser.username },
   });
 
+  // if the store not exist redirect
   if (!store) {
     redirect('/');
   }
 
+  // if exist
   return (
     <>
       <div>This will be a navbar</div>
