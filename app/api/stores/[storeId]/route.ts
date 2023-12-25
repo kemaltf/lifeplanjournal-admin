@@ -43,7 +43,6 @@ export async function PATCH(req: Request, { params }: { params: { storeId: strin
 // dont remove the first params (req) because it will make error when we deleting the second params
 export async function DELETE(req: Request, { params }: { params: { storeId: string } }) {
   try {
-    console.log(params);
     // Check authorization
     const currentUser = await getCurrentUser();
 
