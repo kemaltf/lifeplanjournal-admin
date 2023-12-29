@@ -12,11 +12,47 @@ datasource db {
 }
 
 model Store {
-  id         String   @id @default(uuid())
+  id         String      @id @default(uuid())
   name       String
   user_id    String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  billboards Billboard[]
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+}
+
+model Billboard {
+  id        String             @id @default(uuid())
+  storeId   String
+  Store     Store              @relation(fields: [storeId], references: [id])
+  label     String
+  images    ImageOnBillboard[]
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  @@index([storeId])
+}
+
+model Image {
+  id        String             @id @default(uuid())
+  filename  String
+  filetype  String
+  fileimage String
+  datetime  String
+  filesize  String
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+  billboard ImageOnBillboard[]
+}
+
+model ImageOnBillboard {
+  id          String    @id @default(uuid())
+  billboardId String
+  billboard   Billboard @relation(fields: [billboardId], references: [id])
+  imageId     String
+  image       Image     @relation(fields: [imageId], references: [id])
+
+  @@index([billboardId], name: "idx_billboard_id")
+  @@index([imageId], name: "idx_image_id")
 }
 
 model User {
